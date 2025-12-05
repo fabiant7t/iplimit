@@ -24,7 +24,7 @@ func (p *Plugin) ServeDNS(ctx context.Context, w dns.ResponseWriter, r *dns.Msg)
 		ctx,
 		ModResponseWriter(
 			w,
-			NewLimitResponseModifier(p.IPLimit),
+			NewIPLimitResponseModifier(p.IPLimit),
 		),
 		r,
 	)

@@ -4,7 +4,7 @@ import "github.com/miekg/dns"
 
 type ResponseModifier func(*dns.Msg) error
 
-func NewLimitResponseModifier(ipLimit int) ResponseModifier {
+func NewIPLimitResponseModifier(ipLimit int) ResponseModifier {
 	return func(res *dns.Msg) error {
 		if res == nil {
 			return nil
