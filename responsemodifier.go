@@ -1,6 +1,8 @@
 package iplimit
 
-import "github.com/miekg/dns"
+import (
+	"github.com/miekg/dns"
+)
 
 type ResponseModifier func(*dns.Msg) error
 
@@ -8,6 +10,10 @@ func NewIPLimitResponseModifier(ipLimit int) ResponseModifier {
 	return func(res *dns.Msg) error {
 		if res == nil {
 			return nil
+		}
+
+		if ipLimit < 1 {
+			ipLimit = 1
 		}
 
 		if len(res.Answer) <= ipLimit {
